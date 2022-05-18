@@ -1,0 +1,49 @@
+-- 
+-- Roll No: <59>
+-- Name: <Vishnu Nair>
+-- Program: <Assignment 3>
+-- 
+
+
+--
+-- Table structure for table <Teaches>
+--
+create table Teaches(fno char(5) NOT NULL,sname varchar(15) NOT NULL,sdate date NOT NULL,edate date NOT NULL,primary key(fno, sname),foreign key(fno) references faculty(fno),foreign key(sname) references subject(sname));
+
+
+--
+-- Dumping data for table <Teaches>
+--
+insert into Teaches values(104,"FB",'2022-10-13','2022-12-15');
+insert into Teaches values(105,"python",'2022-09-13','2022-11-15');
+insert into Teaches values(106,"html",'2022-08-13','2022-10-15');
+insert into Teaches values(107,"c++",'2022-07-13','2022-09-15');
+insert into Teaches values(108,"AI",'2022-06-13','2022-08-15');
+
+--
+-- SQl Query Statements
+--
+
+--Question2---------------
+
+ update subject set duration=5;
+
+--Question3---------------
+
+ select * from faculty where doj>='2020-03-10';
+
+--Question3---------------
+
+ select * from subject where roomno=204 and duration>2;
+
+--Question4---------------
+
+ select * from Teaches where sdate>='2020-04-01' and edate<='2020-04-30';
+
+--Question5---------------	
+
+ select faculty.fname,subject.sname,subject.duration from faculty,subject where faculty.fno=subject.fno and subject.duration;
+
+
+
+
