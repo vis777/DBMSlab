@@ -1,0 +1,66 @@
+-- 
+-- Roll No: <59>
+-- Name: <VISHNU NAIR>
+-- Program: <Vehicle Insurance Management System - II>
+-- 
+
+
+--
+-- Table structure for table <policy_holder>
+--
+
+create view policy_holder as select policy_no, issue_date, name, reg_no, make, model, yom, cc, sc, value, policy_amt, mode from policy natural join(vehicle natural join(owns natural join customer));
+
+
+--
+-- Table structure for table <claim>
+--
+
+create view claim as select claim_no, policy_no, name , reg_no, doa, location, make, model, amt from policy natural join(customer natural join (vehicle natural join(accident natural join participated)));
+
+
+--
+-- Dumping data for table <table_name>
+--
+
+-- --------insert/update statement commands----------- # This line may be removed in the actcual file
+
+--
+-- SQl Query Statements
+--
+
+select dayofmonth('2001-12-10');
+select month('2021-12-10');
+select year('2021-03-12');
+select dayname('2021-11-05');
+select monthname('2021-11-05');
+
+create procedure pol1 (in cno int(11),out amo int(11) ) begin select amt into amo from participated where cno= claim_no; end $$
+call pol1 (3,@name)$$
+select @name;
+
+create procedure pol1 (in cno int(11),out amo int(11) ) begin select amt into amo from participated where cno= claim_no;end$$
+call pol1(1011,@name)$$
+select @name;
+
+ 
+create trigger deleteVehicle
+before delete
+on vehicle
+for each row
+begin
+delete from policy where reg_no=old.reg_no;
+delete from owns where reg_no=old.reg_no;
+delete from participated where reg_no=old.reg_no;
+end $$
+-- -----SQL query statments preceeded by the its question-------- # This line may be removed in the actual file
+-- -----Question number should be commented---------------#This line may be removed in the actual file
+
+
+
+
+
+
+
+
+
